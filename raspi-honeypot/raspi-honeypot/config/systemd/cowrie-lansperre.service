@@ -1,0 +1,15 @@
+[Unit]
+Description=Sperrt Honeypot Verkehr ins Heimnetz
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Environment=HEIMNETZ=<HEIMNETZ>
+Environment=ROUTER_IP=<ROUTER_IP>
+ExecStart=/usr/local/sbin/lansperre.sh up
+ExecStop=/usr/local/sbin/lansperre.sh down
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,22 @@
+# /etc/wireguard/wg0.conf auf dem VPS Gateway
+[Interface]
+Address = 10.8.0.1/24
+ListenPort = 51820
+PrivateKey = <VPS_PRIVATE_KEY>
+PostUp = /usr/local/sbin/honeypot-nat.sh up
+PostDown = /usr/local/sbin/honeypot-nat.sh down
+
+# Raspberry Pi
+[Peer]
+PublicKey = <PI_PUBLIC_KEY>
+AllowedIPs = 10.8.0.2/32
+
+# T-Pot VM
+[Peer]
+PublicKey = <TPOT_PUBLIC_KEY>
+AllowedIPs = 10.8.0.3/32
+
+# Admin Laptop (optional)
+[Peer]
+PublicKey = <LAPTOP_PUBLIC_KEY>
+AllowedIPs = 10.8.0.5/32

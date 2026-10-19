@@ -1,0 +1,13 @@
+# benutzer:x:passwort   ! davor = ablehnen, * = alles
+# Typische Passwoerter ablehnen, damit es echt wirkt
+root:x:!root
+root:x:!123456
+root:x:!password
+# Alles andere annehmen
+root:x:*
+admin:x:*
+ubuntu:x:*
+pi:x:*
+support:x:*
+user:x:*
+administrator:x:*

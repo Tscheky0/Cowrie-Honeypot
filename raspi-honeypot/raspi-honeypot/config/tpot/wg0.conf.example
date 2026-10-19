@@ -1,0 +1,29 @@
+# /etc/wireguard/wg0.conf auf der T-Pot VM
+[Interface]
+Address = 10.8.0.3/24
+PrivateKey = <TPOT_PRIVATE_KEY>
+# Keine automatische Route, Rueckweg nur fuer Tunnel-Verbindungen
+Table = off
+
+# Rueckroute per Connection Marking
+PostUp = sysctl -w net.ipv4.conf.all.rp_filter=2 net.ipv4.conf.%i.rp_filter=2
+PostUp = iptables -t mangle -A PREROUTING -i %i -m conntrack --ctstate NEW -j CONNMARK --set-mark 0x1
+PostUp = iptables -t mangle -A PREROUTING ! -i %i -j CONNMARK --restore-mark
+PostUp = iptables -t mangle -A OUTPUT -j CONNMARK --restore-mark
+PostUp = ip rule add fwmark 0x1 table 51820 priority 100
+PostUp = ip route add 10.8.0.0/24 dev %i table 51820
+PostUp = ip route add default dev %i table 51820
+PostUp = ip route add 10.8.0.0/24 dev %i
+
+PostDown = iptables -t mangle -D PREROUTING -i %i -m conntrack --ctstate NEW -j CONNMARK --set-mark 0x1
+PostDown = iptables -t mangle -D PREROUTING ! -i %i -j CONNMARK --restore-mark
+PostDown = iptables -t mangle -D OUTPUT -j CONNMARK --restore-mark
+PostDown = ip rule del fwmark 0x1 table 51820 priority 100
+PostDown = ip route flush table 51820
+
+[Peer]
+PublicKey = <VPS_PUBLIC_KEY>
+Endpoint = <VPS_IP>:51820
+AllowedIPs = 0.0.0.0/0
+# Haelt den Tunnel durch das CGNAT offen
+PersistentKeepalive = 25

@@ -1,0 +1,18 @@
+[Unit]
+Description=Honeypot Push-Alarm bei erfolgreichem Cowrie Login
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Mit "systemctl edit hp-alarm" ueberschreiben
+Environment=NTFY_TOPIC=<NTFY_TOPIC>
+Environment=NTFY_SERVER=https://ntfy.sh
+Environment=LOGFILE=/home/<ADMIN_USER>/honeypot/cowrie/log/cowrie.json
+ExecStart=/usr/local/bin/hp-alarm.sh
+Restart=always
+RestartSec=10
+User=<ADMIN_USER>
+
+[Install]
+WantedBy=multi-user.target
