@@ -12,9 +12,7 @@ Der Honeypot läuft auf einem Raspberry Pi 5 als dediziertem Sensor, Cowrie selb
 
 ## Auswertung
 
-Die Auswertung läuft auf zwei Wegen. Zum einen über T-Pot (die Honeypot-Plattform der Telekom), das als virtuelle Maschine betrieben wird und ein fertiges Web-Dashboard mit Kibana liefert: eine Live-Angriffskarte, Auswertungen nach Herkunftsland, Angreifer-IPs und verwendeten Zugangsdaten.
-
-Zum anderen über ein eigenes Python-Skript (`cowrie_auswertung.py`), das die Cowrie-Logs ausliest und daraus ein eigenes HTML-Dashboard erzeugt: die am häufigsten probierten Benutzernamen und Passwörter, die meistgenutzten Befehle, die Herkunft der Angriffe und ihr zeitlicher Verlauf.
+Die Auswertung läuft über T-Pot (die Honeypot-Plattform der Telekom), das als virtuelle Maschine betrieben wird und ein fertiges Web-Dashboard mit Kibana liefert: eine Live-Angriffskarte, Auswertungen nach Herkunftsland, Angreifer-IPs und verwendeten Zugangsdaten.
 
 ## Monitoring
 
