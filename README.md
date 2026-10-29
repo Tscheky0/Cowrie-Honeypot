@@ -150,8 +150,3 @@ Raspberry Pi 5 mit 8 GB RAM, Raspberry Pi OS, Docker, Cowrie, WireGuard, Hetzner
 ## Rechtlicher Hinweis
 
 Dieses Projekt dient ausschließlich Ausbildungs und Forschungszwecken. Der Honeypot greift selbst niemanden an, sondern zeichnet nur eingehende Verbindungen auf. Zugangsdaten, echte IP Adressen und private Schlüssel sind in diesem Repository bewusst nicht enthalten.
-
-## Autor
-
-**Tscheky0**
-IT Netzwerktechnik Ausbildung am Schulungszentrum Fohnsdorf, Steiermark
